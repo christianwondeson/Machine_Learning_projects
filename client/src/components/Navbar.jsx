@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import {
-  LightModeOutline,
   DarkModeOutlined,
   Menu as MenuIcon,
   Search,
-  SettingsOutline,
+  SettingsOutlined,
   ArrowDropDownOutlined,
+  LightModeOutlined,
 } from "@mui/icons-material";
 
 import {
@@ -20,7 +20,7 @@ import { useDispatch } from "react-redux";
 import { setMode } from "state";
 import profileImage from "assets/me_ai.jpg";
 
-const Navbar = () => {
+const Navbar = ({isSidebarOpen, setIsSidebarOpen}) => {
   const dispatch = useDispatch();
   const theme = useTheme();
   return (
@@ -33,14 +33,18 @@ const Navbar = () => {
     >
       <Toolbar sx={{ justifyContent: "space-between" }}>
         {/* left side of our dashboard */}
-        <FlexBetween>
-          <IconButton onClick={() => console.log("open/close sidebar")}>
+        <FlexBetween position={"relative"} left={"300px"}>
+          <IconButton
+            onClick={() => {
+              setIsSidebarOpen(!isSidebarOpen);
+            }}
+          >
             <MenuIcon />
           </IconButton>
           <FlexBetween
             background={theme.palette.background.alt}
             borderRadius={"9px"}
-            gap={"3rem"}
+            gap={"1rem"}
             p="0.1rem 1.5rem"
           >
             <InputBase placeholder="Search ..." />
@@ -48,6 +52,19 @@ const Navbar = () => {
               <Search />
             </IconButton>
           </FlexBetween>
+        </FlexBetween>
+        {/* the right side */}
+        <FlexBetween gap={"1.5rem"} position={"relative"} right={"-800px"}>
+          <IconButton onClick={() => dispatch(setMode())}>
+            {theme.palette.mode === "dark" ? (
+              <DarkModeOutlined sx={{ fontSize: "25px" }} />
+            ) : (
+              <LightModeOutlined sx={{ fontSize: "25px" }} />
+            )}
+          </IconButton>
+          <IconButton>
+            <SettingsOutlined sx={{ fontSize: "25px" }} />
+          </IconButton>
         </FlexBetween>
       </Toolbar>
     </AppBar>
