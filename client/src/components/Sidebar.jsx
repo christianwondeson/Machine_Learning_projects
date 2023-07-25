@@ -35,6 +35,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import FlexBetween from "./FlexBetween";
 import profileImage from "assets/me_ai.jpg";
 // list of sidebar items
+
+import {Info} from "../assets/data";
 const navItems = [
   {
     text: "Dashboard",
@@ -95,6 +97,7 @@ const navItems = [
 ];
 
 const Sidebar = ({
+  Info,
   isNonMobile,
   drawerWidth,
   isSidebarOpen,
@@ -131,7 +134,7 @@ const Sidebar = ({
               <FlexBetween color={theme.palette.secondary.main}>
                 <Box display="flex" alignItems={"center"} gap={"0.5rem"}>
                   <Typography variant="h4" fontWeight={"bold"}>
-                    AGRO AI VISON
+                    COFFEE CARE
                   </Typography>
                 </Box>
                 {!isNonMobile && (
@@ -190,6 +193,35 @@ const Sidebar = ({
                 );
               })}
             </List>
+          </Box>
+          <Box position={"absolute"} bottom={"2rem"}>
+            <Divider>
+              <FlexBetween
+                textTransform={"none"}
+                gap={"1rem"}
+                m="1.5rem 2rem 0 3 rem"
+              >
+                <Box
+                  component={"Img"}
+                  alt="profile"
+                  src={profileImage}
+                  height={"40px"}
+                  width={"40px"}
+                  borderRadius={"50%"}
+                  sx={{ objectFit: "cover" }}
+                >
+                  <Box textAlign={"left"}>
+                    <Typography
+                      fontWeight={"bold"}
+                      fontSize={"0.9rem"}
+                      sx={{ color: theme.palette.secondary[100] }}
+                    >
+                      {Info.name}
+                    </Typography>
+                  </Box>
+                </Box>
+              </FlexBetween>
+            </Divider>
           </Box>
         </Drawer>
       )}

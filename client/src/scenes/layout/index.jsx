@@ -5,6 +5,7 @@ import { Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Navbar from "components/Navbar";
 import Sidebar from "components/Sidebar";
+import Info from "../../assets/data";
 
 const Layout = () => {
   const isNonMobile = useMediaQuery("(min-width : 600px)");
@@ -17,6 +18,7 @@ const Layout = () => {
       height={"100%"}
     >
       <Sidebar
+        user={Info || {}}
         isNonMobile={isNonMobile}
         drawerWidth="250px"
         isSidebarOpen={isSidebarOpen}
@@ -24,6 +26,7 @@ const Layout = () => {
       />
       <Box>
         <Navbar
+          user={Info || {}}
           isSidebarOpen={isSidebarOpen}
           setIsSidebarOpen={setIsSidebarOpen}
         />

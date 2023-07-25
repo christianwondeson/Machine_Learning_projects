@@ -1,6 +1,6 @@
-import User  from "../models/User";
+import User from "../models/User";
 
-export const getUser = async (req, res) => {
+const getUser = async (req, res) => {
   try {
     const { id } = req.params;
     const user = await User.findById(id);
@@ -10,3 +10,5 @@ export const getUser = async (req, res) => {
     // bad request
   }
 };
+
+export default getUser;
